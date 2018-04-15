@@ -6,7 +6,7 @@ class NPMRegistry(BaseRegistry):
     def __init__(self):
         super().__init__()
         self.base_url = "https://registry.npmjs.com"
-        self.pkg_route = "https://registry.npmjs.com"
+        self.pkg_route = "https://registry.npmjs.com/{0}/latest"
         self.package_page = "https://npmjs.com/package/{0}"
 
     def parse_response(self, data):

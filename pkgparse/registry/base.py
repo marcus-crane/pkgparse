@@ -1,5 +1,6 @@
 import json
 import requests
+import sys
 
 from pkgparse import settings
 
@@ -7,9 +8,9 @@ from pkgparse import settings
 class BaseRegistry:
 
     def __init__(self):
-        root = None
-        pkg_route = None
-        package_page = None
+        self.root = None
+        self.pkg_route = None
+        self.package_page = None
 
     def make_request(self, url, headers={}):
         headers.update({ "User-Agent": settings.USER_AGENT })
@@ -21,17 +22,22 @@ class BaseRegistry:
             if r.status_code is 200:
                 return True
             return False
-        except Error:
-            return False
+        except requests.exceptions.Timeout:
+            print("Dang, I timed out")
+        except requests.exceptions.TooManyRedirects:
+            print("Whoa, I'm being bounced all over the place!")
+        except requests.exceptions.RequestException as e:
+            print(e)
+            sys.exit(1)
 
     def fetch_pkg_details(self, name):
         r = self.make_request(self.pkg_route.format(name))
         data = r.json()
         try:
-            return self.parse_response(data)
+            response = self.parse_response(data)
         except NotImplementedError:
             raise
-
+        return self.build_api_response(response)
 
     def build_api_response(self, response):
         package = {}
