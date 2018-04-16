@@ -23,7 +23,7 @@ class PypiRegistryTestCase(unittest.TestCase):
             "homepage": "http://python-requests.org",
             "package_page": "https://pypi.org/project/requests/",
             "tarball": "https://files.pythonhosted.org/packages/b0/e1/eab4fc3752e3d240468a8c0b284607899d2fbfb236a56b7377a329aa8d09/requests-2.18.4.tar.gz",
-            "latest_version": "4.6.0"
+            "latest_version": "2.18.4"
         })
 
         body = utils.load_json_string('../../fixtures/pypi_pkg.json')
@@ -50,7 +50,7 @@ class PypiRegistryTestCase(unittest.TestCase):
             "homepage": "http://python-requests.org",
             "package_page": "https://pypi.org/project/requests/",
             "tarball": "https://files.pythonhosted.org/packages/b0/e1/eab4fc3752e3d240468a8c0b284607899d2fbfb236a56b7377a329aa8d09/requests-2.18.4.tar.gz",
-            "latest_version": "4.6.0"
+            "latest_version": "2.18.4"
         }
 
         assert actual == expected
