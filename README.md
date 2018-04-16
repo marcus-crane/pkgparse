@@ -30,21 +30,34 @@ Provided that everything is set up properly, pkgparse should start up at [http:/
 
 ## What can I do with it?
 
-At the moment, it's still in development and not really usable at all.
+At the moment, it's still early in development. It's usable but I'm not sure what you'd get out of it just yet.
 
-I've implemented search endpoints for both npm and pypi which are usable.
+I've implemented search endpoints for npm, pypi and rubygems which are usable. Here's an eample of their output:
 
-For example:
+```bash
+GET http://localhost:5000/rubygems/search/rails
+```
 
-`http://localhost:5000/npm/search/react` will return a JSON response with information about [React](https://npmjs.com/package/react). It's not very basic information so far as I haven't implemented dependency searching.
+```json
+{
+  "description": "Ruby on Rails is a full-stack web framework optimized for programmer happiness and sustainable productivity. It encourages beautiful code by favoring convention over configuration.",
+  "homepage": "http://rubyonrails.org",
+  "latest_version": "5.2.0",
+  "license": "MIT",
+  "name": "rails",
+  "package_page": "https://rubygems.org/gems/rails",
+  "source_repo": "http://github.com/rails/rails",
+  "tarball": "https://rubygems.org/gems/rails-5.2.0.gem"
+}
+```
 
-Similarly, `http://localhost:5000/pypi/search/requests` will return information about [BeautifulSoup](https://pypi.org/project/beautifulsoup4/).
-
-The main goal is to provide the same information from multiple registries in a consistent way with no surprises.
+Each registry follows the `{registry_name}/{method}/{package_name}` format so to search for the `npm` package `react`, you'd query `/npm/search/react`.
 
 ## What else is planned?
 
 I've been documenting my thoughts on the project, as well as what I'd like from it as a series of Markdown files inside the `docs` folder.
+
+Likewise, some actual proper documentation will need to be created at some point.
 
 ## Questions or thoughts?
 

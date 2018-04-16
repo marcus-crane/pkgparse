@@ -1,0 +1,76 @@
+{
+  "name": "jekyll",
+  "downloads": 5561311,
+  "version": "3.7.3",
+  "version_downloads": 122408,
+  "platform": "ruby",
+  "authors": "Tom Preston-Werner",
+  "info": "Jekyll is a simple, blog aware, static site generator.",
+  "licenses": [
+    "MIT"
+  ],
+  "metadata": {},
+  "sha": "ce010b1cef8dc2d672ef69434d4f828a1e21e864bceb420c34b2f3e84bfa17cd",
+  "project_uri": "https://rubygems.org/gems/jekyll",
+  "gem_uri": "https://rubygems.org/gems/jekyll-3.7.3.gem",
+  "homepage_uri": "https://github.com/jekyll/jekyll",
+  "wiki_uri": "",
+  "documentation_uri": "http://jekyllrb.com",
+  "mailing_list_uri": "",
+  "source_code_uri": "https://github.com/jekyll/jekyll",
+  "bug_tracker_uri": "https://github.com/jekyll/jekyll/issues",
+  "changelog_uri": null,
+  "dependencies": {
+    "development": [],
+    "runtime": [
+      {
+        "name": "addressable",
+        "requirements": "~> 2.4"
+      },
+      {
+        "name": "colorator",
+        "requirements": "~> 1.0"
+      },
+      {
+        "name": "em-websocket",
+        "requirements": "~> 0.5"
+      },
+      {
+        "name": "i18n",
+        "requirements": "~> 0.7"
+      },
+      {
+        "name": "jekyll-sass-converter",
+        "requirements": "~> 1.0"
+      },
+      {
+        "name": "jekyll-watch",
+        "requirements": "~> 2.0"
+      },
+      {
+        "name": "kramdown",
+        "requirements": "~> 1.14"
+      },
+      {
+        "name": "liquid",
+        "requirements": "~> 4.0"
+      },
+      {
+        "name": "mercenary",
+        "requirements": "~> 0.3.3"
+      },
+      {
+        "name": "pathutil",
+        "requirements": "~> 0.9"
+      },
+      {
+        "name": "rouge",
+        "requirements": "< 4, >= 1.7"
+      },
+      {
+        "name": "safe_yaml",
+        "requirements": "~> 1.0"
+      }
+    ]
+  }
+}
