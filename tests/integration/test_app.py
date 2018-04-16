@@ -44,6 +44,11 @@ class AppTestCase(unittest.TestCase):
 
         assert expected == actual
 
+    def test_query_pypi_details(self):
+        package_string = json.dumps({
+            "name": ""
+        })
+
 
 if __name__ == "__main__":
     unittest.main()

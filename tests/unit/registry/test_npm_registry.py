@@ -9,10 +9,10 @@ from tests import utils
 
 class NPMRegistryTestCase(unittest.TestCase):
 
-    def test_fetch_pkg_details(self):
+    def test_fetch_npm_pkg_details(self):
         """
         Test that given a valid NPM package name, it can fetch the response,
-        parse the specific NPM format and then do a generic repackaging
+        parse the specific NPM JSON format and then do a generic repackaging
         of the information that it finds.
         """
         expected = json.dumps({

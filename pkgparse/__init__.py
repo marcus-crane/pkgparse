@@ -2,6 +2,7 @@ from flask import Flask
 from flask.json import dumps
 
 from pkgparse.registry.npm import NPMRegistry
+from pkgparse.registry.pypi import PypiRegistry
 
 app = Flask(__name__)
 
@@ -25,4 +26,11 @@ def ping():
 def search_npm_package():
     registry = NPMRegistry()
     package = registry.fetch_pkg_details('pkgparse')
+    return dumps(package)
+
+
+app.route('/pypi/search/requests')
+def search_pypi_package():
+    registry = PypiRegistry()
+    package = registry.fetch_pkg_details('requests')
     return dumps(package)
