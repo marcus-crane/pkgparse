@@ -26,7 +26,7 @@ class NPMRegistryTestCase(unittest.TestCase):
             "latest_version": "2.1.1"
         })
 
-        body = utils.load_json_string('../fixtures/npm_pkg_latest.json')
+        body = utils.load_json_string('../../fixtures/npm_pkg_latest.json')
         httpretty.register_uri(httpretty.GET,
                                "https://registry.npmjs.org/pkgparse/latest",
                                body=body)
@@ -41,7 +41,7 @@ class NPMRegistryTestCase(unittest.TestCase):
         properly by implementing a parser for the NPM registry format.
         """
         registry = NPMRegistry()
-        response = utils.load_json_fixture('../fixtures/npm_pkg_latest.json')
+        response = utils.load_json_fixture('../../fixtures/npm_pkg_latest.json')
         actual = registry.parse_response(response)
         expected = {
             "name": "pkgparse",
