@@ -32,7 +32,7 @@ Provided that everything is set up properly, pkgparse should start up at [http:/
 
 At the moment, it's still early in development. It's usable but I'm not sure what you'd get out of it just yet.
 
-I've implemented search endpoints for npm, pypi and rubygems which are usable. Here's an eample of their output:
+I've implemented search endpoints for [npm](https://www.npmjs.com/), [pypi](https://pypi.org/) and [rubygems](https://rubygems.org) which are usable. Here's an example of the general response format for search queries:
 
 ```bash
 GET http://localhost:5000/rubygems/search/rails
@@ -51,7 +51,19 @@ GET http://localhost:5000/rubygems/search/rails
 }
 ```
 
-Each registry follows the `{registry_name}/{method}/{package_name}` format so to search for the `npm` package `react`, you'd query `/npm/search/react`.
+Each registry follows the `{registry_name}/{method}/{package_name}` format if you wanted to search for the `npm` package `react`, you'd query `/npm/search/react`.
+
+## Names for things
+
+There doesn't seem to be a consistent naming standard for the services that pkgparse connects to:
+
+[CPAN](https://www.cpan.org/) is an archive network serving modules
+[NPM](https://npmjs.org) is a registry serving modules
+[PEAR](https://pear.php.net/) is a distribution system for components
+[PyPi](https://pypi.org/) is an index serving packages
+[RubyGems](https://rubygems.org/) is a gem hosting service for gems
+
+My point is that there's a lot of different names for the same thing and it confuses my small brain. I'm still making my mind up on this but as it stands, I'm referring to the reusable bits of code as `packages` and the places you download them from as `registries`.
 
 ## What else is planned?
 
