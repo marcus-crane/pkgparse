@@ -1,4 +1,7 @@
-from flask import Flask, jsonify
+from flask import Flask
+from flask.json import dumps
+
+from pkgparse.registry.npm import NPMRegistry
 
 app = Flask(__name__)
 
@@ -16,3 +19,10 @@ def index():
 @app.route('/ping')
 def ping():
     return 'pong'
+
+
+@app.route('/npm/search/pkgparse')
+def search_npm_package():
+    registry = NPMRegistry()
+    package = registry.fetch_pkg_details('pkgparse')
+    return dumps(package)

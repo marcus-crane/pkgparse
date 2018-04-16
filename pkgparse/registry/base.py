@@ -82,7 +82,7 @@ class BaseRegistry:
         else:
             package['latest_version'] = False
 
-        return json.dumps(package)
+        return package
 
     def parse_response(self, data):
         raise NotImplementedError
