@@ -3,14 +3,14 @@ import unittest
 
 import httpretty
 
-from pkgparse import app
+from pkgparse import server
 from tests import utils
 
 
 class AppTestCase(unittest.TestCase):
 
     def setUp(self):
-        self.app = app.test_client()
+        self.app = server.app.test_client()
 
     def test_index(self):
         response = self.app.get('/')
@@ -43,11 +43,6 @@ class AppTestCase(unittest.TestCase):
 
 
         assert expected == actual
-
-    def test_query_pypi_details(self):
-        package_string = json.dumps({
-            "name": ""
-        })
 
 
 if __name__ == "__main__":

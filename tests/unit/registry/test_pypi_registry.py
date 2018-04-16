@@ -1,4 +1,4 @@
-import json
+import unittest
 import unittest
 
 import httpretty

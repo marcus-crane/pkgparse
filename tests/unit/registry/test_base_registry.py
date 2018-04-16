@@ -1,4 +1,3 @@
-import json
 import unittest
 
 import httpretty
@@ -77,7 +76,7 @@ class BaseRegistryTestCase(unittest.TestCase):
 
         actual = registry.build_api_response(dummy_parsed_response)
 
-        expected = json.dumps({
+        expected = {
             'name': 'cool_package',
             'description': 'A neat package',
             'license': 'MIT',
@@ -86,7 +85,7 @@ class BaseRegistryTestCase(unittest.TestCase):
             'package_page': False,
             'tarball': False,
             'latest_version': '2.0.0'
-        })
+        }
 
         assert actual == expected
 

@@ -1,4 +1,3 @@
-import json
 import unittest
 
 import httpretty
@@ -15,7 +14,7 @@ class NPMRegistryTestCase(unittest.TestCase):
         parse the specific NPM JSON format and then do a generic repackaging
         of the information that it finds.
         """
-        expected = json.dumps({
+        expected = {
             "name": "pkgparse",
             "description": "A module for searching details about other modules",
             "license": "MIT",
@@ -24,7 +23,7 @@ class NPMRegistryTestCase(unittest.TestCase):
             "package_page": "https://npmjs.com/package/pkgparse",
             "tarball": "https://registry.npmjs.org/pkgparse/-/pkgparse-2.1.1.tgz",
             "latest_version": "2.1.1"
-        })
+        }
 
         body = utils.load_json_string('../../fixtures/npm_pkg_latest.json')
         httpretty.register_uri(httpretty.GET,

@@ -13,26 +13,72 @@ class BaseRegistry:
         self.package_page = None
 
     def make_request(self, url, headers={}):
+        """
+        A generic requests wrapper that handles appending the User Agent
+        for me automatically.
+
+        :param url: string
+        :param headers: dictionary
+        :return: requests.models.Response
+        """
         headers.update({ "User-Agent": settings.USER_AGENT })
         return requests.get(url, headers=headers)
 
     def ping(self):
+        """
+        A generic ping function that makes a GET request to the root
+        of the inheriting registry (ie; https://registry.npmjs.com)
+        and makes a GET request.
+
+        If a 200 is returned, we assume it's alive and well, otherwise
+        we figure that it's not. It works for now.
+
+        :return: boolean
+        """
         try:
             r = self.make_request(self.root)
             if r.status_code is 200:
                 return True
             return False
-        except requests.exceptions.Timeout:
-            print("Dang, I timed out")
-        except requests.exceptions.TooManyRedirects:
-            print("Whoa, I'm being bounced all over the place!")
         except requests.exceptions.RequestException as e:
+            # TODO: Implement a better way of handling errors
             print(e)
             sys.exit(1)
 
     def fetch_pkg_details(self, name):
+        """
+        A generic fetch function that takes the name of a package
+        and then performs everything requests to fetch details
+        about that package.
+
+        The majority of this function, excluding the parse_response
+        function is abstracted away from the actual registries thenselves.
+
+        Unfortunately, parse_response can't be avoided since each registry
+        has a different response.
+
+        In order to ensure that inheriting classes
+        implement their own version, this base class throws a NotImplementedError
+        upon attempting to use it.
+
+        :param name: string
+        :return: dictionary
+        """
         r = self.make_request(self.pkg_route.format(name))
-        data = r.json()
+        if r.status_code == 200:
+            data = r.json()
+        else:
+            """
+            TODO: A very hacky way of ignoring invalid packages.
+            
+            Error messages should presumably be stored externally and
+            thrown as needed.
+            
+            Any errors here with the request, that aren't external repo
+            related, don't really need to be logged to the user since
+            it'd be my fault.
+            """
+            return {'error': 'Invalid package name'}
         try:
             response = self.parse_response(data)
         except NotImplementedError:
@@ -40,6 +86,14 @@ class BaseRegistry:
         return self.build_api_response(response)
 
     def build_api_response(self, response):
+        """
+        A generic object reshaping function. I don't know what you'd call
+        it but it just checks what was found and what wasn't.
+
+        The registry specific parse_response functions return only the keys that
+        :param response:
+        :return:
+        """
         package = {}
 
         if 'name' in response:
