@@ -10,6 +10,17 @@ class NPMRegistry(BaseRegistry):
         self.package_page = "https://npmjs.com/package/{0}"
 
     def parse_response(self, data):
+        """
+        This is the implementation of the parse_response method tailored to
+        work with the NPM registry.
+
+        If no homepage is provided for a package, it seems to default to the
+        repository url so we ignore that because it's just duplicate info
+        that the user probably won't care about getting twice.
+
+        :param data: dictionary
+        :return: dictionary
+        """
         response = {}
 
         response['name'] = data['name']

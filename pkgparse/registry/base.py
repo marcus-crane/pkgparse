@@ -90,9 +90,11 @@ class BaseRegistry:
         A generic object reshaping function. I don't know what you'd call
         it but it just checks what was found and what wasn't.
 
-        The registry specific parse_response functions return only the keys that
-        :param response:
-        :return:
+        The registry specific parse_response functions return only the keys
+        that it finds, rather than filling in blank entries with a zero value.
+
+        :param response: dictionary
+        :return: dictionary
         """
         package = {}
 
@@ -123,6 +125,8 @@ class BaseRegistry:
 
         if 'package_page' in response:
             package['package_page'] = response['package_page']
+        elif self.package_page:
+            package['package_page'] = self.package_page.format(response['name'])
         else:
             package['package_page'] = False
 

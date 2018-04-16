@@ -5,7 +5,7 @@ import httpretty
 from pkgparse.registry.base import BaseRegistry
 
 
-class BaseRegistryTestCase(unittest.TestCase):
+class BaseRegistryUnitTestCase(unittest.TestCase):
 
     @httpretty.activate
     def test_make_request(self):
