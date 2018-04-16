@@ -5,8 +5,8 @@ class RubygemsRegistry(BaseRegistry):
 
     def __init__(self):
         super().__init__()
-        self.base_url = "https://rubygems.org"
         self.pkg_route = "https://rubygems.org/api/v1/gems/{0}.json"
+        self.test_pkg = "rails"
 
     def parse_response(self, data):
         """

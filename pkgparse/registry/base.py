@@ -8,9 +8,45 @@ from pkgparse import settings
 class BaseRegistry:
 
     def __init__(self):
-        self.root = None
+        """
+        This function is called whenever a new BaseRegistry class is created
+        and these variables also pass onto inheriting classes.
+
+        Inheriting classes need to create a definition for them as they're
+        used for a number of things:
+
+        pkg_route is the endpoint that returns details about a package.
+        At the moment, this means whichever endpoint provides the most
+        information with the smallest Content-Length. For example, NPM
+        provides a /latest route which only returns the latest version.
+        This is ideal, for now, as we don't do anything with previous
+        versions.
+
+        test_pkg is nothing more than the name of a package that is known
+        to exist and can be pinged in order to test that a response is
+        being returned. Most of the registries don't seem to have actual
+        ping routes and pinging the root of the API doesn't always return
+        the designed response ie; HTML, a 404 and so on.
+
+        pkg_page is the URL that would pull up, well, the page
+        for a package. That is to say, what's the URL that a user,
+        not a developer, would visit ie; HTML, not JSON.
+
+        It should be noted that pkg_route and pkg_page both use
+        string interpolation. As an example, the pkg_page for
+        Jekyll, which lives on RubyGems, would be
+        https://rubygems.org/gems/{0} where the {0} is later
+        filled with the string "jekyll".
+
+        You'll find that a number of registries omit the pkg_page
+        variable however because their API responses already prove
+        a link to one. It felt a bit redundant defining it when
+        the response we're already getting contains a link to
+        the package page, y'know?
+        """
         self.pkg_route = None
-        self.package_page = None
+        self.test_pkg = None
+        self.pkg_page = None
 
     def make_request(self, url, headers={}):
         """
@@ -36,8 +72,9 @@ class BaseRegistry:
         :return: boolean
         """
         try:
-            r = self.make_request(self.root)
-            if r.status_code is 200:
+            url = self.pkg_route.format(self.test_pkg)
+            r = self.make_request(url)
+            if r.status_code == 200:
                 return True
             return False
         except requests.exceptions.RequestException as e:
@@ -125,8 +162,8 @@ class BaseRegistry:
 
         if 'package_page' in response:
             package['package_page'] = response['package_page']
-        elif self.package_page:
-            package['package_page'] = self.package_page.format(response['name'])
+        elif self.pkg_page:
+            package['package_page'] = self.pkg_page.format(response['name'])
         else:
             package['package_page'] = False
 

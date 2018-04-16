@@ -5,9 +5,8 @@ class PypiRegistry(BaseRegistry):
 
     def __init__(self):
         super().__init__()
-        # TODO: Base URL is a bit redundant here. Consider just ignoring it
-        self.base_url = "https://pypi.org/pypi/"
         self.pkg_route = "https://pypi.org/pypi/{0}/json"
+        self.test_pkg = "django"
 
     def parse_response(self, data):
         """

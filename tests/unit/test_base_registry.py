@@ -24,21 +24,23 @@ class BaseRegistryUnitTestCase(unittest.TestCase):
     @httpretty.activate
     def test_ping_registry_success(self):
         """Pinging a valid registry should return True to show it's online"""
-        httpretty.register_uri(httpretty.GET, "https://registry.npmjs.org",
+        httpretty.register_uri(httpretty.GET, "https://registry.npmjs.com/tiny-tarball/latest",
                                status=200)
         registry = BaseRegistry()
-        registry.root = "https://registry.npmjs.org"
+        registry.pkg_route = "https://registry.npmjs.com/{0}/latest"
+        registry.test_pkg = "tiny-tarball"
 
         assert registry.ping() is True
 
     @httpretty.activate
     def test_ping_registry_failure(self):
         """Pinging an invalid registry should return False to show it's down"""
-        httpretty.register_uri(httpretty.GET, "https://registry.fake",
+        httpretty.register_uri(httpretty.GET, "https://registry.fake/hotdog-farmer",
                                body="Not Found",
                                status=404)
         registry = BaseRegistry()
-        registry.root = "https://registry.fake"
+        registry.pkg_route = "https://registry.fake/{0}"
+        registry.test_pkg = "hotdog-farmer"
 
         assert registry.ping() is False
 
