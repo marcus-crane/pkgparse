@@ -57,11 +57,11 @@ Each registry follows the `{registry_name}/{method}/{package_name}` format if yo
 
 There doesn't seem to be a consistent naming standard for the services that pkgparse connects to:
 
-[CPAN](https://www.cpan.org/) is an archive network serving modules
-[NPM](https://npmjs.org) is a registry serving modules
-[PEAR](https://pear.php.net/) is a distribution system for components
-[PyPi](https://pypi.org/) is an index serving packages
-[RubyGems](https://rubygems.org/) is a gem hosting service for gems
+* [CPAN](https://www.cpan.org/) is an archive network serving modules
+* [NPM](https://npmjs.org) is a registry serving modules
+* [PEAR](https://pear.php.net/) is a distribution system for components
+* [PyPi](https://pypi.org/) is an index serving packages
+* [RubyGems](https://rubygems.org/) is a gem hosting service for gems
 
 My point is that there's a lot of different names for the same thing and it confuses my small brain. I'm still making my mind up on this but as it stands, I'm referring to the reusable bits of code as `packages` and the places you download them from as `registries`.
 
