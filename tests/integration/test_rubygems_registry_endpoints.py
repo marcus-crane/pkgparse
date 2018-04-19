@@ -3,14 +3,14 @@ import unittest
 
 import httpretty
 
-from pkgparse import server
+from pkgparse import app
 from tests import utils
 
 
 class PypiRegistryIntegrationTestCase(unittest.TestCase):
 
     def setUp(self):
-        self.app = server.app.test_client()
+        self.app = app.test_client()
 
     def test_query_pypi_details(self):
         """
@@ -30,7 +30,7 @@ class PypiRegistryIntegrationTestCase(unittest.TestCase):
             "latest_version": "3.7.3"
         }, sort_keys=True)
 
-        data = utils.load_json_string('../fixtures/rubygems_pkg.json')
+        data = utils.load_json_fixture('../fixtures/rubygems_pkg.json')
         httpretty.register_uri(httpretty.GET,
                                "https://rubygems.org/api/v1/gems/jekyll.json",
                                body=data)

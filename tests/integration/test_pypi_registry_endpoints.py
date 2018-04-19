@@ -3,18 +3,18 @@ import unittest
 
 import httpretty
 
-from pkgparse import server
+from pkgparse import app
 from tests import utils
 
 
-class NPMRegistryIntegrationTestCase(unittest.TestCase):
+class PypiRegistryIntegrationTestCase(unittest.TestCase):
 
     def setUp(self):
-        self.app = server.app.test_client()
+        self.app = app.test_client()
 
-    def test_query_npm_details(self):
+    def test_query_pypi_details(self):
         """
-        Verify that the search npm endpoint returns the expected response.
+        Verify that the search pypi endpoint returns the expected response.
 
         The response should be a status code 200 and send with the Content-Type
         of application/json.
@@ -30,7 +30,7 @@ class NPMRegistryIntegrationTestCase(unittest.TestCase):
             "latest_version": "2.1.1"
         }, sort_keys=True)
 
-        data = utils.load_json_string('../fixtures/npm_pkg_latest.json')
+        data = utils.load_json_fixture('../fixtures/npm_pkg_latest.json')
         httpretty.register_uri(httpretty.GET,
                                "https://registry.npmjs.org/pkgparse/latest",
                                body=data)

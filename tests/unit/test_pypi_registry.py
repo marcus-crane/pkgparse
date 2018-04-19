@@ -25,7 +25,7 @@ class PypiRegistryUnitTestCase(unittest.TestCase):
             "latest_version": "2.18.4"
         })
 
-        body = utils.load_json_string('../fixtures/pypi_pkg.json')
+        body = utils.load_json_fixture('pypi_pkg.json')
         httpretty.register_uri(httpretty.GET,
                                "https://pypi.org/pypi/requests/json",
                                body=body)
@@ -40,7 +40,7 @@ class PypiRegistryUnitTestCase(unittest.TestCase):
         properly by implementing a parser for the PyPi registry format
         """
         registry = PypiRegistry()
-        response = utils.load_json_fixture('../fixtures/pypi_pkg.json')
+        response = utils.load_json_fixture('pypi_pkg.json')
         actual = registry.parse_response(response)
         expected = {
             "name": "requests",
