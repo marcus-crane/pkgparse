@@ -12,27 +12,19 @@ tl;dr It's an excuse to build something a little bigger and it's something I'd u
 
 The server itself is built using [Python 3.6](https://www.python.org/downloads/release/python-360/) and the [Flask](http://flask.pocoo.org/) web framework.
 
-There's a few other prerequisites which can be installed using the provided requirements.txt file:
+Everything you need to get started is created and installed for you using the provided `setup.sh` script.
 
-```python3
-pip install -r requirements.txt
-```
-
-It's recommended that you set up a virtual environment using either [virtualenv](https://pypi.python.org/pypi/virtualenv) or the more beginner friendly [pipenv](https://github.com/pypa/pipenv).
+Simply running `./setup.sh` should perform everything you need. You may need to make the script executable with `chmod +x script.sh` if it isn't already.
 
 ## Running the server
 
-Once you've got everything installed, navigate to the top level folder called `pkgparse` that contains both `pkgparse` and `tests`.
-
-A `Makefile` is provided which has a shortcut for running the server: `make serve`.
-
-Provided that everything is set up properly, pkgparse should start up at [http://localhost:5000](http://localhost:5000).
+Once you've got everything started, you can start the server by running `inv server.start` and pkgparse should be available at [http://localhost:5000](http://localhost:5000).
 
 ## What can I do with it?
 
 At the moment, it's still early in development. It's usable but I'm not sure what you'd get out of it just yet.
 
-I've implemented search endpoints for [npm](https://www.npmjs.com/), [pypi](https://pypi.org/) and [rubygems](https://rubygems.org) which are usable. Here's an example of the general response format for search queries:
+I've implemented search endpoints for [nuget](https://www.nuget.org/), [npm](https://www.npmjs.com/), [pypi](https://pypi.org/) and [rubygems](https://rubygems.org) which are usable. Here's an example of the general response format for search queries:
 
 ```bash
 GET http://localhost:5000/rubygems/search/rails
