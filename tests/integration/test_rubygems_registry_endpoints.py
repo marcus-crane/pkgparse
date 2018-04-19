@@ -21,7 +21,8 @@ class PypiRegistryIntegrationTestCase(unittest.TestCase):
         """
         package_string = json.dumps({
             "name": "jekyll",
-            "description": "Jekyll is a simple, blog aware, static site generator.",
+            "description": "Jekyll is a simple, blog aware, static site "
+                           "generator.",
             "license": "MIT",
             "source_repo": "https://github.com/jekyll/jekyll",
             "homepage": False,

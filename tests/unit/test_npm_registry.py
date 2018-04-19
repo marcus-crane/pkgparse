@@ -16,12 +16,14 @@ class NPMRegistryUnitTestCase(unittest.TestCase):
         """
         expected = {
             "name": "pkgparse",
-            "description": "A module for searching details about other modules",
+            "description": "A module for searching details about other "
+                           "modules",
             "license": "MIT",
             "source_repo": "https://github.com/marcus-crane/pkgparse",
             "homepage": False,
             "package_page": "https://npmjs.com/package/pkgparse",
-            "tarball": "https://registry.npmjs.org/pkgparse/-/pkgparse-2.1.1.tgz",
+            "tarball": "https://registry.npmjs.org/pkgparse/-"
+                       "/pkgparse-2.1.1.tgz",
             "latest_version": "2.1.1"
         }
 
@@ -44,11 +46,13 @@ class NPMRegistryUnitTestCase(unittest.TestCase):
         actual = registry.parse_response(response)
         expected = {
             "name": "pkgparse",
-            "description": "A module for searching details about other modules",
+            "description": "A module for searching details about other "
+                           "modules",
             "license": "MIT",
             "source_repo": "https://github.com/marcus-crane/pkgparse",
             "package_page": "https://npmjs.com/package/pkgparse",
-            "tarball": "https://registry.npmjs.org/pkgparse/-/pkgparse-2.1.1.tgz",
+            "tarball": "https://registry.npmjs.org/pkgparse/-"
+                       "/pkgparse-2.1.1.tgz",
             "latest_version": "2.1.1"
         }
         assert actual == expected

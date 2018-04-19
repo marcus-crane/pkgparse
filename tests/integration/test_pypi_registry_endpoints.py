@@ -21,12 +21,14 @@ class PypiRegistryIntegrationTestCase(unittest.TestCase):
         """
         package_string = json.dumps({
             "name": "pkgparse",
-            "description": "A module for searching details about other modules",
+            "description": "A module for searching details about other "
+                           "modules",
             "license": "MIT",
             "source_repo": "https://github.com/marcus-crane/pkgparse",
             "homepage": False,
             "package_page": "https://npmjs.com/package/pkgparse",
-            "tarball": "https://registry.npmjs.org/pkgparse/-/pkgparse-2.1.1.tgz",
+            "tarball": "https://registry.npmjs.org/pkgparse/-/"
+                       "pkgparse-2.1.1.tgz",
             "latest_version": "2.1.1"
         }, sort_keys=True)
 

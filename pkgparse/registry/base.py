@@ -57,7 +57,7 @@ class BaseRegistry:
         :param headers: dictionary
         :return: requests.models.Response
         """
-        headers.update({ "User-Agent": settings.USER_AGENT })
+        headers.update({"User-Agent": settings.USER_AGENT})
         return requests.get(url, headers=headers)
 
     def ping(self):
@@ -95,8 +95,8 @@ class BaseRegistry:
         has a different response.
 
         In order to ensure that inheriting classes
-        implement their own version, this base class throws a NotImplementedError
-        upon attempting to use it.
+        implement their own version, this base class throws a
+        NotImplementedError upon attempting to use it.
 
         :param name: string
         :return: dictionary
@@ -107,10 +107,10 @@ class BaseRegistry:
         else:
             """
             TODO: A very hacky way of ignoring invalid packages.
-            
+
             Error messages should presumably be stored externally and
             thrown as needed.
-            
+
             Any errors here with the request, that aren't external repo
             related, don't really need to be logged to the user since
             it'd be my fault.

@@ -36,8 +36,8 @@ def ping_npm():
     registry = NPMRegistry()
     alive = registry.ping()
     if alive:
-        return jsonify({ 'status': 'online' })
-    return jsonify({ 'status': 'offline' })
+        return jsonify({'status': 'online'})
+    return jsonify({'status': 'offline'})
 
 
 @app.route('/npm/search/<name>')
@@ -45,6 +45,7 @@ def search_npm_package(name):
     registry = NPMRegistry()
     package = registry.fetch_pkg_details(name)
     return jsonify(package)
+
 
 @app.route('/nuget/search/<name>')
 def search_nuget_package(name):

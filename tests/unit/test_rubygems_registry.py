@@ -10,13 +10,14 @@ class RubygemsRegistryUnitTestCase(unittest.TestCase):
 
     def test_fetch_rubygems_pkg_details(self):
         """
-        Test that given a valid Rubygems package name, it can fetch the response,
-        parse the specific Rubygems JSON format and then do a generic repackaging
-        of the information that it finds.
+        Test that given a valid Rubygems package name, it can fetch the
+        response, parse the specific Rubygems JSON format and then do a
+        generic repackaging of the information that it finds.
         """
         expected = ({
             "name": "jekyll",
-            "description": "Jekyll is a simple, blog aware, static site generator.",
+            "description": "Jekyll is a simple, blog aware, static site "
+                           "generator.",
             "license": "MIT",
             "source_repo": "https://github.com/jekyll/jekyll",
             "homepage": False,
@@ -44,7 +45,8 @@ class RubygemsRegistryUnitTestCase(unittest.TestCase):
         actual = registry.parse_response(response)
         expected = {
             "name": "jekyll",
-            "description": "Jekyll is a simple, blog aware, static site generator.",
+            "description": "Jekyll is a simple, blog aware, static site "
+                           "generator.",
             "license": "MIT",
             "source_repo": "https://github.com/jekyll/jekyll",
             "package_page": "https://rubygems.org/gems/jekyll",

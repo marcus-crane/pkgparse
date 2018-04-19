@@ -23,8 +23,8 @@ class NugetRegistryUnitTestCase(unittest.TestCase):
             "source_repo": False,
             "homepage": "https://www.newtonsoft.com/json",
             "package_page": "https://www.nuget.org/packages/Newtonsoft.Json/",
-            "tarball": ("https://api.nuget.org/v3-flatcontainer/"
-                        "newtonsoft.json/11.0.2/newtonsoft.json.11.0.2.nupkg"),
+            "tarball": "https://api.nuget.org/v3-flatcontainer/"
+                        "newtonsoft.json/11.0.2/newtonsoft.json.11.0.2.nupkg",
             "latest_version": "11.0.2"
         }
 
@@ -54,8 +54,8 @@ class NugetRegistryUnitTestCase(unittest.TestCase):
                         "/master/LICENSE.md"),
             "homepage": "https://www.newtonsoft.com/json",
             "package_page": "https://www.nuget.org/packages/Newtonsoft.Json/",
-            "tarball": ("https://api.nuget.org/v3-flatcontainer/"
-                        "newtonsoft.json/11.0.2/newtonsoft.json.11.0.2.nupkg"),
+            "tarball": "https://api.nuget.org/v3-flatcontainer/"
+                        "newtonsoft.json/11.0.2/newtonsoft.json.11.0.2.nupkg",
             "latest_version": "11.0.2"
         }
         assert actual == expected
