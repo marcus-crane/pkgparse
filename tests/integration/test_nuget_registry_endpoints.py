@@ -3,14 +3,14 @@ import unittest
 
 import httpretty
 
-from pkgparse import server
+from pkgparse import app
 from tests import utils
 
 
 class NugetRegistryIntegrationTestCase(unittest.TestCase):
 
     def setUp(self):
-        self.app = server.app.test_client()
+        self.app = app.test_client()
 
     def test_query_nuget_details(self):
         """
@@ -33,7 +33,7 @@ class NugetRegistryIntegrationTestCase(unittest.TestCase):
             "latest_version": "11.0.2"
         }, sort_keys=True)
 
-        data = utils.load_json_string('../fixtures/nuget_pkg.json')
+        data = utils.load_json_fixture('../fixtures/nuget_pkg.json')
         httpretty.register_uri(httpretty.GET,
                                ("https://api.nuget.org/v3/registration3/"
                                 "newtonsoft.json/index.json"),

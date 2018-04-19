@@ -10,7 +10,7 @@ class BaseRegistryUnitTestCase(unittest.TestCase):
     @httpretty.activate
     def test_make_request(self):
         """
-        A generic helper functinon that makes a GET request and appends
+        A generic helper function that makes a GET request and appends
         the correct User-Agent which is specified in the settings file.
         """
         httpretty.register_uri(httpretty.GET, "https://test.net",

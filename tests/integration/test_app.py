@@ -1,16 +1,13 @@
-import json
 import unittest
 
-import httpretty
 
-from pkgparse import server
-from tests import utils
+from pkgparse import app
 
 
 class AppIntegrationTestCase(unittest.TestCase):
 
     def setUp(self):
-        self.app = server.app.test_client()
+        self.app = app.test_client()
 
     def test_index(self):
         """

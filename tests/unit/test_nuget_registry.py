@@ -28,7 +28,7 @@ class NugetRegistryUnitTestCase(unittest.TestCase):
             "latest_version": "11.0.2"
         }
 
-        body = utils.load_json_string('../fixtures/nuget_pkg.json')
+        body = utils.load_json_fixture('nuget_pkg.json')
         httpretty.register_uri(httpretty.GET,
                                ("https://api.nuget.org/v3/registration3/"
                                 "newtonsoft.json/index.json"),
@@ -44,7 +44,7 @@ class NugetRegistryUnitTestCase(unittest.TestCase):
         properly by implementing a parser for the NuGet registry format.
         """
         registry = NugetRegistry()
-        response = utils.load_json_fixture('../fixtures/nuget_pkg.json')
+        response = utils.load_json_fixture('nuget_pkg.json')
         actual = registry.parse_response(response)
         expected = {
             "name": "Newtonsoft.Json",

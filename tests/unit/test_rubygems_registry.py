@@ -25,7 +25,7 @@ class RubygemsRegistryUnitTestCase(unittest.TestCase):
             "latest_version": "3.7.3"
         })
 
-        body = utils.load_json_string('../fixtures/rubygems_pkg.json')
+        body = utils.load_json_fixture('rubygems_pkg.json')
         httpretty.register_uri(httpretty.GET,
                                "https://rubygems.org/api/v1/gems/jekyll.json",
                                body=body)
@@ -40,7 +40,7 @@ class RubygemsRegistryUnitTestCase(unittest.TestCase):
         properly by implementing a parser for the Rubygems registry format
         """
         registry = RubygemsRegistry()
-        response = utils.load_json_fixture('../fixtures/rubygems_pkg.json')
+        response = utils.load_json_fixture('rubygems_pkg.json')
         actual = registry.parse_response(response)
         expected = {
             "name": "jekyll",
@@ -53,6 +53,7 @@ class RubygemsRegistryUnitTestCase(unittest.TestCase):
         }
 
         assert actual == expected
+
 
 if __name__ == "__main__":
     unittest.main()

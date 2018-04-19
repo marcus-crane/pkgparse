@@ -1,0 +1,16 @@
+{
+  "integration/test_app.py": true,
+  "integration/test_npm_registry.py": true,
+  "integration/test_npm_registry_endpoints.py": true,
+  "integration/test_nuget_registry.py": true,
+  "integration/test_nuget_registry_endpoints.py": true,
+  "integration/test_pypi_registry.py": true,
+  "integration/test_pypi_registry_endpoints.py": true,
+  "integration/test_rubygems_registry.py": true,
+  "integration/test_rubygems_registry_endpoints.py": true,
+  "unit/test_base_registry.py": true,
+  "unit/test_npm_registry.py": true,
+  "unit/test_nuget_registry.py": true,
+  "unit/test_pypi_registry.py": true,
+  "unit/test_rubygems_registry.py": true
+}
