@@ -1,3 +1,4 @@
+import json
 import unittest
 
 import httpretty
@@ -46,14 +47,30 @@ class BaseRegistryUnitTestCase(unittest.TestCase):
 
         assert registry.ping() is False
 
+    @httpretty.activate
     def test_fetch_pkg_details(self):
         """
         Trying to use the BaseRegistry class directly should fail.
         Each inheriting registry class needs to implement its own package
         parsing function as responses are all wildly different.
         """
+        body = {
+            "name": "pkgparse",
+            "description": "A module for searching details about other "
+                           "modules",
+            "license": "MIT",
+            "source_repo": "https://github.com/marcus-crane/pkgparse",
+            "homepage": False,
+            "package_page": "https://npmjs.com/package/pkgparse",
+            "tarball": "https://registry.npmjs.org/pkgparse/-"
+                       "/pkgparse-2.1.1.tgz",
+            "latest_version": "2.1.1"
+        }
+        httpretty.register_uri(httpretty.GET,
+                               "https://registry.npmjs.org/pkgparse/latest",
+                               body=json.dumps(body))
         registry = BaseRegistry()
-        registry.pkg_route = "http://registry.npmjs.org/{0}"
+        registry.pkg_route = "https://registry.npmjs.org/{0}/latest"
 
         with self.assertRaises(NotImplementedError):
             registry.fetch_pkg_details('pkgparse')
