@@ -1,3 +1,4 @@
+import json
 import unittest
 
 import httpretty
@@ -8,6 +9,7 @@ from tests import utils
 
 class NPMRegistryUnitTestCase(unittest.TestCase):
 
+    @httpretty.activate
     def test_fetch_npm_pkg_details(self):
         """
         Test that given a valid NPM package name, it can fetch the response,
@@ -29,8 +31,8 @@ class NPMRegistryUnitTestCase(unittest.TestCase):
 
         body = utils.load_json_fixture('npm_pkg_latest.json')
         httpretty.register_uri(httpretty.GET,
-                               "https://registry.npmjs.org/pkgparse/latest",
-                               body=body)
+                               "https://registry.npmjs.com/pkgparse/latest",
+                               body=json.dumps(body))
         registry = NPMRegistry()
         actual = registry.fetch_pkg_details('pkgparse')
 

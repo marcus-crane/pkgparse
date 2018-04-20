@@ -12,6 +12,7 @@ class NPMRegistryIntegrationTestCase(unittest.TestCase):
     def setUp(self):
         self.app = app.test_client()
 
+    @httpretty.activate
     def test_query_npm_details(self):
         """
         Verify that the search npm endpoint returns the expected response.
@@ -34,8 +35,8 @@ class NPMRegistryIntegrationTestCase(unittest.TestCase):
 
         data = utils.load_json_fixture('../fixtures/npm_pkg_latest.json')
         httpretty.register_uri(httpretty.GET,
-                               "https://registry.npmjs.org/pkgparse/latest",
-                               body=data)
+                               "https://registry.npmjs.com/pkgparse/latest",
+                               body=json.dumps(data))
         response = self.app.get('/npm/search/pkgparse')
 
         expected = json.loads(package_string)

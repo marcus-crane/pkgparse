@@ -7,12 +7,13 @@ from pkgparse import app
 from tests import utils
 
 
-class PypiRegistryIntegrationTestCase(unittest.TestCase):
+class RubygemsRegistryIntegrationTestCase(unittest.TestCase):
 
     def setUp(self):
         self.app = app.test_client()
 
-    def test_query_pypi_details(self):
+    @httpretty.activate
+    def test_query_rubygems_details(self):
         """
         Verify that the search rubygems endpoint returns the expected response.
 
@@ -34,7 +35,7 @@ class PypiRegistryIntegrationTestCase(unittest.TestCase):
         data = utils.load_json_fixture('../fixtures/rubygems_pkg.json')
         httpretty.register_uri(httpretty.GET,
                                "https://rubygems.org/api/v1/gems/jekyll.json",
-                               body=data)
+                               body=json.dumps(data))
         response = self.app.get('/rubygems/search/jekyll')
 
         expected = json.loads(package_string)
@@ -42,6 +43,7 @@ class PypiRegistryIntegrationTestCase(unittest.TestCase):
 
         assert response.status_code == 200
         assert response.headers['Content-Type'] == 'application/json'
+
         assert actual == expected
 
 

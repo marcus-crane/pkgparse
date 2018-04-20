@@ -12,6 +12,7 @@ class PypiRegistryIntegrationTestCase(unittest.TestCase):
     def setUp(self):
         self.app = app.test_client()
 
+    @httpretty.activate
     def test_query_pypi_details(self):
         """
         Verify that the search pypi endpoint returns the expected response.
@@ -20,23 +21,23 @@ class PypiRegistryIntegrationTestCase(unittest.TestCase):
         of application/json.
         """
         package_string = json.dumps({
-            "name": "pkgparse",
-            "description": "A module for searching details about other "
-                           "modules",
-            "license": "MIT",
-            "source_repo": "https://github.com/marcus-crane/pkgparse",
-            "homepage": False,
-            "package_page": "https://npmjs.com/package/pkgparse",
-            "tarball": "https://registry.npmjs.org/pkgparse/-/"
-                       "pkgparse-2.1.1.tgz",
-            "latest_version": "2.1.1"
+            "name": "requests",
+            "description": "Python HTTP for Humans.",
+            "license": "Apache 2.0",
+            "source_repo": False,
+            "homepage": "http://python-requests.org",
+            "package_page": "https://pypi.org/project/requests/",
+            "tarball": "https://files.pythonhosted.org/packages/b0/e1/"
+                        "eab4fc3752e3d240468a8c0b284607899d2fbfb236a56b7377a3"
+                        "29aa8d09/requests-2.18.4.tar.gz",
+            "latest_version": "2.18.4"
         }, sort_keys=True)
 
-        data = utils.load_json_fixture('../fixtures/npm_pkg_latest.json')
+        data = utils.load_json_fixture('pypi_pkg.json')
         httpretty.register_uri(httpretty.GET,
-                               "https://registry.npmjs.org/pkgparse/latest",
-                               body=data)
-        response = self.app.get('/npm/search/pkgparse')
+                               "https://pypi.org/pypi/requests/json",
+                               body=json.dumps(data))
+        response = self.app.get('/pypi/search/requests')
 
         expected = json.loads(package_string)
         actual = json.loads(response.data)

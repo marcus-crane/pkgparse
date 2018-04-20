@@ -1,3 +1,4 @@
+import json
 import unittest
 
 import httpretty
@@ -8,6 +9,7 @@ from tests import utils
 
 class RubygemsRegistryUnitTestCase(unittest.TestCase):
 
+    @httpretty.activate
     def test_fetch_rubygems_pkg_details(self):
         """
         Test that given a valid Rubygems package name, it can fetch the
@@ -29,7 +31,7 @@ class RubygemsRegistryUnitTestCase(unittest.TestCase):
         body = utils.load_json_fixture('rubygems_pkg.json')
         httpretty.register_uri(httpretty.GET,
                                "https://rubygems.org/api/v1/gems/jekyll.json",
-                               body=body)
+                               body=json.dumps(body))
         registry = RubygemsRegistry()
         actual = registry.fetch_pkg_details('jekyll')
 

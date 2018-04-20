@@ -12,6 +12,7 @@ class NugetRegistryIntegrationTestCase(unittest.TestCase):
     def setUp(self):
         self.app = app.test_client()
 
+    @httpretty.activate
     def test_query_nuget_details(self):
         """
         Verify that the search nuget endpoint returns the expected response.
@@ -37,7 +38,7 @@ class NugetRegistryIntegrationTestCase(unittest.TestCase):
         httpretty.register_uri(httpretty.GET,
                                ("https://api.nuget.org/v3/registration3/"
                                 "newtonsoft.json/index.json"),
-                               body=data)
+                               body=json.dumps(data))
         response = self.app.get('/nuget/search/newtonsoft.json')
 
         expected = json.loads(package_string)

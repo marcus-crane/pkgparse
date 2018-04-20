@@ -1,3 +1,4 @@
+import json
 import unittest
 
 import httpretty
@@ -8,6 +9,7 @@ from tests import utils
 
 class NugetRegistryUnitTestCase(unittest.TestCase):
 
+    @httpretty.activate
     def test_fetch_nuget_pkg_details(self):
         """
         Test that given a valid NuGet package name, it can fetch the response,
@@ -32,7 +34,7 @@ class NugetRegistryUnitTestCase(unittest.TestCase):
         httpretty.register_uri(httpretty.GET,
                                ("https://api.nuget.org/v3/registration3/"
                                 "newtonsoft.json/index.json"),
-                               body=body)
+                               body=json.dumps(body))
         registry = NugetRegistry()
         actual = registry.fetch_pkg_details('newtonsoft.json')
 

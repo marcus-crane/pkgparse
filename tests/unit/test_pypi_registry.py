@@ -1,3 +1,4 @@
+import json
 import unittest
 
 import httpretty
@@ -8,6 +9,7 @@ from tests import utils
 
 class PypiRegistryUnitTestCase(unittest.TestCase):
 
+    @httpretty.activate
     def test_fetch_pypi_pkg_details(self):
         """
         Test that given a valid PyPi package name, it can fetch the response,
@@ -30,7 +32,7 @@ class PypiRegistryUnitTestCase(unittest.TestCase):
         body = utils.load_json_fixture('pypi_pkg.json')
         httpretty.register_uri(httpretty.GET,
                                "https://pypi.org/pypi/requests/json",
-                               body=body)
+                               body=json.dumps(body))
         registry = PypiRegistry()
         actual = registry.fetch_pkg_details('requests')
 
