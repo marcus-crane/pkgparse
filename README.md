@@ -1,5 +1,8 @@
 # pkgparse - package parsing server
 
+[![Build Status](https://travis-ci.org/marcus-crane/pkgparse.svg?branch=master)](https://travis-ci.org/marcus-crane/pkgparse)
+[![Python Version](https://img.shields.io/badge/python-3.6-blue.svg)](https://python.org)
+
 This project is a rewrite of my original [pkgparse-node](https://github.com/marcus-crane/pkgparse-node) cli tool but with the intention of supporting every major package manager such as [npm](https://www.npmjs.com/), [pypi](https://pypi.org/), [rubygems](https://rubygems.org) and so on.
 
 It's basically just an excuse for me to properly build a project that uses class-based inheritance which I felt package registries do fairly well.
