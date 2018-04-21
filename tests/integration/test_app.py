@@ -10,20 +10,26 @@ class AppIntegrationTestCase(unittest.TestCase):
     def setUp(self):
         self.app = app.test_client()
 
-    def test_index(self):
+    def test_list_endpoints(self):
         """
-        Test that the root of the server returns something!
-        Basically a placeholder for a future homepage
+        Test that the endpoints route lists all available endpoints
         """
-        expected = {
-            "0": "/",
-            "1": "/npm/ping",
-            "2": "/npm/search/<name>",
-            "3": "/nuget/search/<name>",
-            "4": "/ping",
-            "5": "/pypi/search/<name>",
-            "6": "/rubygems/search/<name>"
-        }
+        routes = [
+            '/',
+            '/npm/ping',
+            '/npm/search/<name>',
+            '/nuget/ping',
+            '/nuget/search/<name>',
+            '/ping',
+            '/pypi/ping',
+            '/pypi/search/<name>',
+            '/rubygems/ping',
+            '/rubygems/search/<name>',
+        ]
+        expected = {}
+        for num, route in enumerate(routes):
+            expected[str(num)] = route
+
         response = self.app.get('/')
         assert json.loads(response.data) == expected
 
