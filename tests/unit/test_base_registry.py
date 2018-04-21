@@ -32,7 +32,7 @@ class BaseRegistryUnitTestCase(unittest.TestCase):
         registry.pkg_route = "https://registry.npmjs.com/{0}/latest"
         registry.test_pkg = "tiny-tarball"
 
-        assert registry.ping() is True
+        assert registry.ping()['status'] is 'online'
 
     @httpretty.activate
     def test_ping_registry_failure(self):
@@ -45,7 +45,7 @@ class BaseRegistryUnitTestCase(unittest.TestCase):
         registry.pkg_route = "https://registry.fake/{0}"
         registry.test_pkg = "hotdog-farmer"
 
-        assert registry.ping() is False
+        assert registry.ping()['status'] is 'offline'
 
     @httpretty.activate
     def test_fetch_pkg_details(self):

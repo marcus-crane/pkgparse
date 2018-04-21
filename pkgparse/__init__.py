@@ -20,24 +20,34 @@ app.config["JSONIFY_PRETTYPRINT_REGULAR"] = False
 def page_not_found(error):
     return 'This page does not exist', 404
 
+# General routes
+
 
 @app.route('/')
-def index():
-    return 'Hello, World!'
+def list_endpoints():
+    func_list = {}
+    endpoints = []
+    for rule in app.url_map.iter_rules():
+        if rule.endpoint != 'static':
+            endpoints.append(rule.rule)
+    endpoints.sort()
+    for index, endpoint in enumerate(endpoints):
+        func_list[index] = endpoint
+    return jsonify(func_list)
 
 
 @app.route('/ping')
 def ping():
     return 'pong'
 
+# NPM
+
 
 @app.route('/npm/ping')
 def ping_npm():
     registry = NPMRegistry()
-    alive = registry.ping()
-    if alive:
-        return jsonify({'status': 'online'})
-    return jsonify({'status': 'offline'})
+    status = registry.ping()
+    return jsonify(status)
 
 
 @app.route('/npm/search/<name>')
@@ -46,6 +56,15 @@ def search_npm_package(name):
     package = registry.fetch_pkg_details(name)
     return jsonify(package)
 
+# NuGet
+
+
+@app.route('/nuget/ping')
+def ping_nuget():
+    registry = NugetRegistry()
+    status = registry.ping()
+    return jsonify(status)
+
 
 @app.route('/nuget/search/<name>')
 def search_nuget_package(name):
@@ -53,12 +72,30 @@ def search_nuget_package(name):
     package = registry.fetch_pkg_details(name)
     return jsonify(package)
 
+# PyPi
+
+
+@app.route('/pypi/ping')
+def ping_pypi():
+    registry = PypiRegistry()
+    status = registry.ping()
+    return jsonify(status)
+
 
 @app.route('/pypi/search/<name>')
 def search_pypi_package(name):
     registry = PypiRegistry()
     package = registry.fetch_pkg_details(name)
     return jsonify(package)
+
+# Rubygems
+
+
+@app.route('/rubygems/ping')
+def ping_rubygems():
+    registry = RubygemsRegistry()
+    status = registry.ping()
+    return jsonify(status)
 
 
 @app.route('/rubygems/search/<name>')

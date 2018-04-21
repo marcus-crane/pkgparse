@@ -75,8 +75,8 @@ class BaseRegistry:
             url = self.pkg_route.format(self.test_pkg)
             r = self.make_request(url)
             if r.status_code == 200:
-                return True
-            return False
+                return {'status': 'online'}
+            return {'status': 'offline'}
         except requests.exceptions.RequestException as e:
             # TODO: Implement a better way of handling errors
             print(e)
