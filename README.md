@@ -11,7 +11,23 @@ Eventually, a cli tool will likely query this information but as it returns stan
 
 tl;dr It's an excuse to build something a little bigger and it's something I'd use myself.
 
-## Prerequisites
+## Running the project
+
+Thanks to Docker, you can launch the pkgparse api without having to worry 
+about complete set up or anything else.
+ 
+You'll need [invoke](http://www.pyinvoke.org) installed but you just can 
+install it to your default Python installation if you like.
+
+With that done, you can run `inv docker.make` to create the Docker image. 
+`inv docker.start` starts the container in the background and `inv docker
+.stop` stops it.
+
+That's about everything you need.
+
+## Development setup
+
+### Prerequisites
 
 The server itself is built using [Python 3.6](https://www.python.org/downloads/release/python-360/) and the [Flask](http://flask.pocoo.org/) web framework.
 
@@ -19,11 +35,11 @@ Everything you need to get started is created and installed for you using the pr
 
 Simply running `./setup.sh` should perform everything you need. You may need to make the script executable with `chmod +x script.sh` if it isn't already.
 
-## Running the server
+### Running the server
 
 Once you've got everything started, you can start the server by running `inv server.start` and pkgparse should be available at [http://localhost:5000](http://localhost:5000).
 
-## What can I do with it?
+### What can I do with it?
 
 At the moment, it's still early in development. It's usable but I'm not sure what you'd get out of it just yet.
 
