@@ -10,4 +10,10 @@ def make(ctx):
 @task
 def start(ctx):
     """ Spin up the latest version of pkgparse docker image """
-    ctx.run("docker run pkgparse:latest")
+    ctx.run("docker-compose up --build -d")
+
+
+@task
+def stop(ctx):
+    """ Spin down the pkgparse docker image """
+    ctx.run("docker-compose down")
