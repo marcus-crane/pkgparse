@@ -22,8 +22,16 @@ def page_not_found(error):
 
 
 @app.route('/')
-def index():
-    return 'Hello, World!'
+def list_endpoints():
+    func_list = {}
+    endpoints = []
+    for rule in app.url_map.iter_rules():
+        if rule.endpoint != 'static':
+            endpoints.append(rule.rule)
+    endpoints.sort()
+    for index, endpoint in enumerate(endpoints):
+        func_list[index] = endpoint
+    return jsonify(func_list)
 
 
 @app.route('/ping')

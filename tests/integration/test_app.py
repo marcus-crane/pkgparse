@@ -1,3 +1,4 @@
+import json
 import unittest
 
 
@@ -14,8 +15,17 @@ class AppIntegrationTestCase(unittest.TestCase):
         Test that the root of the server returns something!
         Basically a placeholder for a future homepage
         """
+        expected = {
+            "0": "/",
+            "1": "/npm/ping",
+            "2": "/npm/search/<name>",
+            "3": "/nuget/search/<name>",
+            "4": "/ping",
+            "5": "/pypi/search/<name>",
+            "6": "/rubygems/search/<name>"
+        }
         response = self.app.get('/')
-        assert response.data == b"Hello, World!"
+        assert json.loads(response.data) == expected
 
     def test_ping(self):
         """Test that the pkgparse server is alive and well."""
