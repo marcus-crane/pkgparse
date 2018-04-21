@@ -103,3 +103,7 @@ def search_rubygems_package(name):
     registry = RubygemsRegistry()
     package = registry.fetch_pkg_details(name)
     return jsonify(package)
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')
