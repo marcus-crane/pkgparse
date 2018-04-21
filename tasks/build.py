@@ -1,5 +1,6 @@
 from invoke import task
 
+
 @task
 def save_deps(ctx):
     """ Generate a new requirements.txt file """
