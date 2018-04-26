@@ -36,7 +36,7 @@ class RubygemsRegistryIntegrationTestCase(unittest.TestCase):
         httpretty.register_uri(httpretty.GET,
                                "https://rubygems.org/api/v1/gems/jekyll.json",
                                body=json.dumps(data))
-        response = self.app.get('/rubygems/search/jekyll')
+        response = self.app.get('/rubygems/jekyll')
 
         expected = json.loads(package_string)
         actual = json.loads(response.data)

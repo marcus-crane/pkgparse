@@ -35,70 +35,66 @@ def list_endpoints():
         func_list[index] = endpoint
     return jsonify(func_list)
 
+# Ping Routes
+
 
 @app.route('/ping')
 def ping():
     return 'pong'
 
-# NPM
 
-
-@app.route('/npm/ping')
+@app.route('/ping/npm')
 def ping_npm():
     registry = NPMRegistry()
     status = registry.ping()
     return jsonify(status)
 
 
-@app.route('/npm/search/<name>')
-def search_npm_package(name):
-    registry = NPMRegistry()
-    package = registry.fetch_pkg_details(name)
-    return jsonify(package)
-
-# NuGet
-
-
-@app.route('/nuget/ping')
+@app.route('/ping/nuget')
 def ping_nuget():
     registry = NugetRegistry()
     status = registry.ping()
     return jsonify(status)
 
 
-@app.route('/nuget/search/<name>')
-def search_nuget_package(name):
-    registry = NugetRegistry()
-    package = registry.fetch_pkg_details(name)
-    return jsonify(package)
-
-# PyPi
-
-
-@app.route('/pypi/ping')
+@app.route('/ping/pypi')
 def ping_pypi():
     registry = PypiRegistry()
     status = registry.ping()
     return jsonify(status)
 
 
-@app.route('/pypi/search/<name>')
-def search_pypi_package(name):
-    registry = PypiRegistry()
-    package = registry.fetch_pkg_details(name)
-    return jsonify(package)
-
-# Rubygems
-
-
-@app.route('/rubygems/ping')
+@app.route('/ping/rubygems')
 def ping_rubygems():
     registry = RubygemsRegistry()
     status = registry.ping()
     return jsonify(status)
 
 
-@app.route('/rubygems/search/<name>')
+# Registries
+
+@app.route('/npm/<name>')
+def search_npm_package(name):
+    registry = NPMRegistry()
+    package = registry.fetch_pkg_details(name)
+    return jsonify(package)
+
+
+@app.route('/nuget/<name>')
+def search_nuget_package(name):
+    registry = NugetRegistry()
+    package = registry.fetch_pkg_details(name)
+    return jsonify(package)
+
+
+@app.route('/pypi/<name>')
+def search_pypi_package(name):
+    registry = PypiRegistry()
+    package = registry.fetch_pkg_details(name)
+    return jsonify(package)
+
+
+@app.route('/rubygems/<name>')
 def search_rubygems_package(name):
     registry = RubygemsRegistry()
     package = registry.fetch_pkg_details(name)

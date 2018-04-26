@@ -37,7 +37,7 @@ class PypiRegistryIntegrationTestCase(unittest.TestCase):
         httpretty.register_uri(httpretty.GET,
                                "https://pypi.org/pypi/requests/json",
                                body=json.dumps(data))
-        response = self.app.get('/pypi/search/requests')
+        response = self.app.get('/pypi/requests')
 
         expected = json.loads(package_string)
         actual = json.loads(response.data)

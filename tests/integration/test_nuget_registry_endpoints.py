@@ -39,7 +39,7 @@ class NugetRegistryIntegrationTestCase(unittest.TestCase):
                                ("https://api.nuget.org/v3/registration3/"
                                 "newtonsoft.json/index.json"),
                                body=json.dumps(data))
-        response = self.app.get('/nuget/search/newtonsoft.json')
+        response = self.app.get('/nuget/newtonsoft.json')
 
         expected = json.loads(package_string)
         actual = json.loads(response.data)
