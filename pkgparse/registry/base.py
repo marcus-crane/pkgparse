@@ -48,7 +48,8 @@ class BaseRegistry:
         self.test_pkg = None
         self.pkg_page = None
 
-    def make_request(self, url, headers={}):
+    @staticmethod
+    def make_request(url, headers={}):
         """
         A generic requests wrapper that handles appending the User Agent
         for me automatically.

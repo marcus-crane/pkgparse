@@ -37,7 +37,7 @@ class NPMRegistryIntegrationTestCase(unittest.TestCase):
         httpretty.register_uri(httpretty.GET,
                                "https://registry.npmjs.com/pkgparse/latest",
                                body=json.dumps(data))
-        response = self.app.get('/npm/search/pkgparse')
+        response = self.app.get('/npm/pkgparse')
 
         expected = json.loads(package_string)
         actual = json.loads(response.data)

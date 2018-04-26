@@ -16,15 +16,15 @@ class AppIntegrationTestCase(unittest.TestCase):
         """
         routes = [
             '/',
-            '/npm/ping',
-            '/npm/search/<name>',
-            '/nuget/ping',
-            '/nuget/search/<name>',
+            '/npm/<name>',
+            '/nuget/<name>',
             '/ping',
-            '/pypi/ping',
-            '/pypi/search/<name>',
-            '/rubygems/ping',
-            '/rubygems/search/<name>',
+            '/ping/npm',
+            '/ping/nuget',
+            '/ping/pypi',
+            '/ping/rubygems',
+            '/pypi/<name>',
+            '/rubygems/<name>',
         ]
         expected = {}
         for num, route in enumerate(routes):
