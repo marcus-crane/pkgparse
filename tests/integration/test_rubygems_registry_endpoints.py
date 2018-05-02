@@ -26,7 +26,7 @@ class RubygemsRegistryIntegrationTestCase(unittest.TestCase):
                            "generator.",
             "license": "MIT",
             "source_repo": "https://github.com/jekyll/jekyll",
-            "homepage": False,
+            "homepage": "",
             "package_page": "https://rubygems.org/gems/jekyll",
             "tarball": "https://rubygems.org/gems/jekyll-3.7.3.gem",
             "latest_version": "3.7.3"

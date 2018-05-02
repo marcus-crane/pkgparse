@@ -22,7 +22,7 @@ class NPMRegistryUnitTestCase(unittest.TestCase):
                            "modules",
             "license": "MIT",
             "source_repo": "https://github.com/marcus-crane/pkgparse",
-            "homepage": False,
+            "homepage": "",
             "package_page": "https://npmjs.com/package/pkgparse",
             "tarball": "https://registry.npmjs.org/pkgparse/-"
                        "/pkgparse-2.1.1.tgz",

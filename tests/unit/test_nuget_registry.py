@@ -22,7 +22,7 @@ class NugetRegistryUnitTestCase(unittest.TestCase):
                             "JSON framework for .NET"),
             "license": ("https://raw.github.com/JamesNK/Newtonsoft.Json"
                         "/master/LICENSE.md"),
-            "source_repo": False,
+            "source_repo": "",
             "homepage": "https://www.newtonsoft.com/json",
             "package_page": "https://www.nuget.org/packages/Newtonsoft.Json/",
             "tarball": "https://api.nuget.org/v3-flatcontainer/"
