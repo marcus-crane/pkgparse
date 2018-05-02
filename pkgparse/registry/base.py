@@ -139,44 +139,44 @@ class BaseRegistry:
         if 'name' in response:
             package['name'] = response['name']
         else:
-            package['name'] = False
+            package['name'] = ""
 
         if 'description' in response:
             package['description'] = response['description']
         else:
-            package['description'] = False
+            package['description'] = ""
 
         if 'license' in response:
             package['license'] = response['license']
         else:
-            package['license'] = False
+            package['license'] = ""
 
         if 'source_repo' in response:
             package['source_repo'] = response['source_repo']
         else:
-            package['source_repo'] = False
+            package['source_repo'] = ""
 
         if 'homepage' in response:
             package['homepage'] = response['homepage']
         else:
-            package['homepage'] = False
+            package['homepage'] = ""
 
         if 'package_page' in response:
             package['package_page'] = response['package_page']
         elif self.pkg_page:
             package['package_page'] = self.pkg_page.format(response['name'])
         else:
-            package['package_page'] = False
+            package['package_page'] = ""
 
         if 'tarball' in response:
             package['tarball'] = response['tarball']
         else:
-            package['tarball'] = False
+            package['tarball'] = ""
 
         if 'latest_version' in response:
             package['latest_version'] = response['latest_version']
         else:
-            package['latest_version'] = False
+            package['latest_version'] = ""
 
         return package
 

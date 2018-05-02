@@ -60,7 +60,7 @@ class BaseRegistryUnitTestCase(unittest.TestCase):
                            "modules",
             "license": "MIT",
             "source_repo": "https://github.com/marcus-crane/pkgparse",
-            "homepage": False,
+            "homepage": "",
             "package_page": "https://npmjs.com/package/pkgparse",
             "tarball": "https://registry.npmjs.org/pkgparse/-"
                        "/pkgparse-2.1.1.tgz",
@@ -101,10 +101,10 @@ class BaseRegistryUnitTestCase(unittest.TestCase):
             'name': 'cool_package',
             'description': 'A neat package',
             'license': 'MIT',
-            'source_repo': False,
-            'homepage': False,
-            'package_page': False,
-            'tarball': False,
+            'source_repo': "",
+            'homepage': "",
+            'package_page': "",
+            'tarball': "",
             'latest_version': '2.0.0'
         }
 

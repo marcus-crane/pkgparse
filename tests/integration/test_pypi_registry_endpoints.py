@@ -24,7 +24,7 @@ class PypiRegistryIntegrationTestCase(unittest.TestCase):
             "name": "requests",
             "description": "Python HTTP for Humans.",
             "license": "Apache 2.0",
-            "source_repo": False,
+            "source_repo": "",
             "homepage": "http://python-requests.org",
             "package_page": "https://pypi.org/project/requests/",
             "tarball": "https://files.pythonhosted.org/packages/b0/e1/"
